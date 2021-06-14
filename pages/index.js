@@ -4,16 +4,17 @@ import Link from 'next/link'
 import {API_URL} from '@/config/index'
 
 export default function HomePage({events}) {
-
+  console.log(events)
   return (
+   
   <Layout>
     <h1> Upcomming Events</h1>
-    {events.length === 0 && <h3> No events to show</h3>}
+    {!events  || events.length === 0 && <h3> No events to show</h3>}
 
     {events && events.map(evt=> (
       <EventItem key={evt.id} evt={evt} />
     ))}
-    {events.length > 0 && (
+    {events && events.length > 0 && (
       <Link href='/events'>
         <a className='btn-secondary'>
           View All Events
